@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "pact-broker.fullname" . }}
+  labels:
+    {{- include "pact-broker.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "pact-broker.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "pact-broker.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: PACT_BROKER_PUBLIC_HEARTBEAT
+              value: "true"
+            - name: PACT_BROKER_PORT
+              value: "80"
+            {{- if not .Values.postgresql.enabled }}
+            - name: PACT_BROKER_DATABASE_ADAPTER
+              value: sqlite
+            - name: PACT_BROKER_DATABASE_NAME
+              value: /tmp/pact_broker.sqlite3
+            {{- else }}
+            - name: PACT_BROKER_DATABASE_HOST
+              value: {{ include "pact-broker.fullname" . }}-postgresql
+            - name: PACT_BROKER_DATABASE_NAME
+              value: {{ .Values.postgresql.postgresqlDatabase | quote }}
+            - name: PACT_BROKER_DATABASE_USERNAME
+              value: {{ .Values.postgresql.postgresqlUsername | quote }}
+            - name: PACT_BROKER_DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "pact-broker.fullname" . }}-postgresql
+                  key: postgresql-password
+            {{- end }}
+            {{- range $key, $value := .Values.env }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{- end }} 
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /diagnostic/status/heartbeat
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
