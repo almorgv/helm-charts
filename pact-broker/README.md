@@ -23,9 +23,12 @@ helm repo add almorgv https://almorgv.github.io/helm-charts/charts
 helm install pact-broker almorgv/pact-broker
 ```
 
-
 ### Install development version using master branch
 
 * Clone the git repo: `git clone git@github.com:almorgv/helm-charts.git`
 
 * Install it with Helm: `helm install pact-broker ./pact-broker`
+
+## Configuration
+
+See [values.yaml](./values.yaml)

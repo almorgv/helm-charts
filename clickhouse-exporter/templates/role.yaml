@@ -1,0 +1,17 @@
+{{- if .Values.podSecurityPolicies.enabled -}}
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: Role
+metadata:
+  name: {{ template "clickhouse-exporter.fullname" . }}
+  labels:
+    app: {{ template "clickhouse-exporter.name" . }}
+    chart: {{ template "clickhouse-exporter.chart" . }}
+    release: {{ .Release.Name | quote }}
+    heritage: {{ .Release.Service | quote }}
+rules:
+- apiGroups: ['extensions']
+  resources: ['podsecuritypolicies']
+  verbs:     ['use']
+  resourceNames:
+  - {{ template "clickhouse-exporter.fullname" . }}
+{{- end }}

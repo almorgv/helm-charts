@@ -1,9 +1,24 @@
 apiVersion: v1
 entries:
+  clickhouse-exporter:
+  - apiVersion: v1
+    appVersion: 0.2.1
+    created: "2021-06-18T18:52:00.2016052+03:00"
+    description: Clickhouse metrics exporter for Prometheus
+    digest: ae2671b6ee9edc888a6c064943afd1f68c9505f34e587007bee89e1e68e1a13a
+    keywords:
+    - metrics
+    - clickhouse
+    - monitoring
+    kubeVersion: '>=1.14.0-0'
+    name: clickhouse-exporter
+    urls:
+    - clickhouse-exporter-0.1.0.tgz
+    version: 0.1.0
   pact-broker:
   - apiVersion: v2
     appVersion: 2.79.1.1
-    created: "2021-06-18T18:38:41.2211808+03:00"
+    created: "2021-06-18T18:52:00.2336265+03:00"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -16,4 +31,4 @@ entries:
     urls:
     - pact-broker-0.1.0.tgz
     version: 0.1.0
-generated: "2021-06-18T18:38:41.18816+03:00"
+generated: "2021-06-18T18:52:00.2006042+03:00"

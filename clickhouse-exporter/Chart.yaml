@@ -1,0 +1,10 @@
+apiVersion: v1
+appVersion: 0.2.1
+description: Clickhouse metrics exporter for Prometheus
+keywords:
+- metrics
+- clickhouse
+- monitoring
+kubeVersion: '>=1.14.0-0'
+name: clickhouse-exporter
+version: 0.1.0

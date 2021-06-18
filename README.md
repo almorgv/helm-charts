@@ -12,4 +12,5 @@ helm repo add almorgv https://almorgv.github.io/helm-charts/charts
 
 ## Charts
 
-- [Pact Broker](./pact-broker/README.md)     
+- [Pact Broker](./pact-broker/README.md)
+- [Clickhouse Prometheus Exporter](./clickhouse-exporter/README.md)
