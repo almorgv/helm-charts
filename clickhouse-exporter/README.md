@@ -24,4 +24,4 @@ helm install clickhouse-exporter almorgv/clickhouse-exporter
 
 ## Configuration
 
-See [values.yaml](./values.yaml)
+See [values.yaml](https://github.com/almorgv/helm-charts/blob/master/clickhouse-exporter/values.yaml)
