@@ -1,0 +1,29 @@
+apiVersion: v2
+name: gitlab-code-review-notifier
+description: A Gitlab Code Review Notifier chart for Kubernetes
+home: https://github.com/almorgv/gitlab-code-review-notifier
+annotations:
+  artifacthub.io/links: |
+    - name: chart source
+      url: https://github.com/almorgv/helm-charts/gitlab-code-review-notifier
+    - name: app source
+      url: https://github.com/almorgv/gitlab-code-review-notifier
+maintainers:
+  - name: almorgv
+    email: almorgv@gmail.com
+    url: https://github.com/almorgv
+
+type: application
+
+# This is the chart version. This version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+version: 0.1.0
+
+# This is the version number of the application being deployed. This version number should be
+# incremented each time you make changes to the application.
+appVersion: 0.1.0
+
+dependencies:
+  - name: postgresql
+    version: 10.5.2
+    repository: https://charts.bitnami.com/bitnami

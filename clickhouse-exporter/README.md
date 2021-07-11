@@ -4,7 +4,7 @@ This is a Helm Chart for [Clickhouse Prometheus Exporter](https://github.com/Cli
 
 ## Installing
 
-### Install released version using Helm repository
+### Install a released version using Helm repository
 
 * Add the Helm charts repo:
 ```
@@ -24,4 +24,4 @@ helm install clickhouse-exporter almorgv/clickhouse-exporter
 
 ## Configuration
 
-See [values.yaml](./values.yaml)
+See [values.yaml](https://github.com/almorgv/helm-charts/blob/master/clickhouse-exporter/values.yaml)

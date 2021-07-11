@@ -1,10 +1,22 @@
 apiVersion: v1
 appVersion: 0.2.1
 description: Clickhouse metrics exporter for Prometheus
+annotations:
+  artifacthub.io/links: |
+    - name: chart source
+      url: https://github.com/almorgv/helm-charts/clickhouse-exporter
+    - name: app source
+      url: https://github.com/ClickHouse/clickhouse_exporter
+    - name: image source
+      url: https://github.com/flant/clickhouse_exporter
+maintainers:
+  - name: almorgv
+    email: almorgv@gmail.com
+    url: https://github.com/almorgv
 keywords:
 - metrics
 - clickhouse
 - monitoring
 kubeVersion: '>=1.14.0-0'
 name: clickhouse-exporter
-version: 0.1.0
+version: 0.1.1
