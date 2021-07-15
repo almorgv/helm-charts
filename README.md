@@ -21,7 +21,7 @@ helm repo add almorgv https://almorgv.github.io/helm-charts/charts
 1. Bump chart version
 1. Package a chart
     ```
-    helm package ./clickhouse-exporter/ -d charts/
+    helm package ./clickhouse-exporter/ -d charts/ --dependency-update
     ```
 1. Update index
     ```
